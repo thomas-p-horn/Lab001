@@ -1,6 +1,6 @@
 ---
 title: "Lab 01 - Plastic waste"
-author: "INSERT NAME HERE"
+author: "INSERT NAME"
 date: "`r Sys.Date()`"
 output: html_document
 ---
@@ -22,18 +22,42 @@ plastic_waste <- read_csv("data/plastic-waste.csv")
 *Remove this text, and add your answer for Exercise 1 here.*
 
 ```{r plastic-waste-continent}
-# remove this comment and add the code for Exercise 1 here
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
+  geom_histogram(binwidth = 0.2)
+
+plastic_waste %>%
+  filter(plastic_waste_per_cap > 3.5)
+
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
+  geom_histogram(binwidth = 0.2) +
+  labs(
+    x = "Plastic Waste per Capita",
+    y = "Count",
+    title = "Plastic Waste Per Capita"
+  ) +
+  facet_wrap(~ continent, nrow = 6)
+
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, 
+                     color = continent,
+                     fill = continent)) +
+  geom_density(alpha = 0.7)
+
 ```
 
 ### Exercise 2
 
 ```{r plastic-waste-density}
-# remove this comment and add the code for Exercise 2 here
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, 
+                     color = continent,
+                     fill = continent)) +
+  geom_density(alpha = 0.2)
 ```
 
 ### Exercise 3
 
-*Remove this text, and add your answer for Exercise 3 here.*
+If we define alpha in the aesthetics, it shows it as a value in the plot and doesn't affect the graphics.
 
 ### Exercise 4
 
